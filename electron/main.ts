@@ -32,7 +32,7 @@ if (process.platform === 'win32') {
 }
 
 // Remote server URL — when set, Electron connects to remote backend instead of spawning local one
-const REMOTE_BACKEND_URL = 'http://118.196.36.27:8766';
+const REMOTE_BACKEND_URL = 'http://118.196.36.27:8765';
 
 function getBackendUrl(): string {
   return REMOTE_BACKEND_URL || `http://127.0.0.1:${BACKEND_PORT}`;
@@ -100,7 +100,7 @@ function createSetupWindow(reupload = false) {
   } else if (isDev) {
     setupWindow.loadURL(`http://localhost:5173/#${setupHash}`);
   } else {
-    setupWindow.loadFile(path.join(__dirname, '..', 'dist', 'index.html'), {
+    setupWindow.loadFile(path.join(__dirname, '..', 'dist-react', 'index.html'), {
       hash: setupHash,
     });
   }
@@ -267,7 +267,7 @@ function createPetWindow(petId = 'default') {
   } else if (isDev) {
     petWindow.loadURL(`http://localhost:5173/#/pet/${DEFAULT_PET_ID}`);
   } else {
-    petWindow.loadFile(path.join(__dirname, '..', 'dist', 'index.html'), {
+    petWindow.loadFile(path.join(__dirname, '..', 'dist-react', 'index.html'), {
       hash: `/pet/${DEFAULT_PET_ID}`,
     });
   }

@@ -2,12 +2,14 @@
   "name": "desktop-pet",
   "version": "1.0.0",
   "description": "Desktop Pet Companion - Your pet on your desktop",
+  "author": "Trae",
   "main": "dist-electron/main.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && tsc -p tsconfig.electron.json",
     "preview": "vite preview",
     "electron:dev": "tsc -p tsconfig.electron.json && concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "preelectron:build": "node -e \"try { require('child_process').execSync('taskkill /F /IM \\\"Desktop Pet.exe\\\" /IM electron.exe /T'); } catch(e) {}\"",
     "electron:build": "npm run build && electron-builder",
     "backend:build": "tsc -p backend-ts/tsconfig.json",
     "backend:dev": "npx tsx backend-ts/server.ts",
@@ -38,6 +40,15 @@
   "build": {
     "appId": "com.desktoppet.companion",
     "productName": "Desktop Pet",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist-react/**/*",
+      "dist-electron/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
     "mac": {
       "target": "dmg"
     },

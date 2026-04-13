@@ -1,4 +1,7 @@
 .env
+release/
+dist-react/
+.cache/
 node_modules/
 dist/
 dist-electron/
